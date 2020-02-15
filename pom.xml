@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>edu.arizona.biosemantics</groupId>
+	<artifactId>semanticmarkup-web</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>semanticmarkup-web</name>
+	<description>Demo project for Spring Boot</description>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.1.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+		  <groupId>edu.arizona.biosemantics.semanticmarkup</groupId>
+		  <artifactId>semantic-markup</artifactId>
+		  <version>0.1.198-author-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+		  <groupId>edu.arizona.biosemantics.semanticmarkup</groupId>
+		  <artifactId>semantic-markup</artifactId>
+		  <version>0.1.198-author-SNAPSHOT</version>
+		  <classifier>sources</classifier>
+		</dependency>
+		
+
+		
+		<!-- force guice 4.1.0 due to conflict between owl api wanting this version and semanticmarkup/enhance still being on 4.0 -->
+		<dependency>
+		    <groupId>com.google.inject</groupId>
+		    <artifactId>guice</artifactId>
+		    <version>4.1.0</version>
+		</dependency>
+		
+			<dependency> 
+			   <groupId>org.semanticweb.elk</groupId> 
+			   <artifactId>elk-owlapi5</artifactId> 
+			   <version>0.5.0-SNAPSHOT</version> 
+			</dependency> 
+		
+		<dependency>
+	<groupId>com.googlecode.json-simple</groupId>
+	<artifactId>json-simple</artifactId>
+	<version>1.1.1</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/net.sourceforge.owlapi/jfact -->
+<dependency>
+    <groupId>net.sourceforge.owlapi</groupId>
+    <artifactId>jfact</artifactId>
+    <version>5.0.1</version>
+</dependency>
+		<dependency>
+		  <groupId>edu.arizona.biosemantics.semanticmarkup</groupId>
+		  <artifactId>enhance</artifactId>
+		  <version>0.0.27-author-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+		  <groupId>edu.arizona.biosemantics.oto</groupId>
+		  <artifactId>oto-common</artifactId>
+		  <!-- <version>0.0.32-author-SNAPSHOT</version>  -->
+		   <version>0.0.35-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>javax.ws.rs</groupId>
+		    <artifactId>javax.ws.rs-api</artifactId>
+		    <version>2.1</version>
+		</dependency>
+			
+		<dependency>
+			<groupId>org.glassfish.jersey.core</groupId>
+			<artifactId>jersey-client</artifactId>
+			<version>2.6</version>
+		</dependency>
+	
+		<dependency>
+			<groupId>org.glassfish.jersey.core</groupId>
+			<artifactId>jersey-common</artifactId>
+			<version>2.6</version>
+		</dependency>
+	
+		<dependency>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-json-jackson</artifactId>
+			<version>2.6</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.fasterxml.jackson.module</groupId>
+		    <artifactId>jackson-module-jaxb-annotations</artifactId>
+		    <version>2.8.6</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>playground</id>
+			<name>playground@SBS</name>
+			<url>http://128.196.105.149:8081/nexus/content/repositories/snapshots/</url>
+			<uniqueVersion>false</uniqueVersion>
+		</snapshotRepository>
+	</distributionManagement>
+	
+	<repositories>
+	<repository>
+			<!-- the repository for snapshot dependencies for elk-owl5.0 -->
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</repository>
+		<repository>
+			<id>playground-releases</id>
+			<url>http://128.196.105.149:8081/nexus/content/repositories/releases/</url>
+		</repository>
+		<repository>
+			<id>playground-snapshots</id>
+			<url>http://128.196.105.149:8081/nexus/content/repositories/snapshots/</url>
+		</repository>
+			<repository>
+			<id>playground-thirdparty</id>
+			<url>http://128.196.105.149:8081/nexus/content/repositories/thirdparty/</url>
+		</repository>
+	</repositories>
+
+</project>
